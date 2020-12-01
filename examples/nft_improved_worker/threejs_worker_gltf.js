@@ -91,11 +91,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     threeGLTFLoader.load("../Data/models/scene.gltf", function(gltf) {
         model = gltf.scene.children[0];
-        model.position.z = 800;
-        model.position.x = 100;
-        model.position.y = 100;
+        model.position.z = 0;
+        model.position.x = 0;
+        model.position.y = 0;
 
-        model.scale *= 2;
+        //model.scale *= 1;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
