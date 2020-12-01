@@ -26,9 +26,9 @@ var trackedMatrix = {
 
 var markers = {
     pinball: {
-        width: 4000,
-        height: 2900,
-        dpi: 300,
+        width: 1920,
+        height: 1200,
+        dpi: 96,
         url: "../examples/DataNFT/toys_high_res"
     }
 };
@@ -89,9 +89,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
 
-    threeGLTFLoader.load("../Data/models/Flamingo.glb", function(gltf) {
+    threeGLTFLoader.load("../Data/models/scene.gltf", function(gltf) {
         model = gltf.scene.children[0];
-        model.position.z = 80;
+        model.position.z = 800;
         model.position.x = 100;
         model.position.y = 100;
 
