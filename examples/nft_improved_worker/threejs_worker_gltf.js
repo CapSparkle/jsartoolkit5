@@ -26,9 +26,9 @@ var trackedMatrix = {
 
 var markers = {
     pinball: {
-        width: 1637,
-        height: 2048,
-        dpi: 215,
+        width: 1920,
+        height: 1200,
+        dpi: 96,
         url: "../examples/DataNFT/chrismass_three_toys"
     }
 };
