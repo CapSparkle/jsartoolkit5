@@ -92,7 +92,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     threeGLTFLoader.load("../Data/models/Flamingo.gltf", function(gltf) {
         model = gltf.scene.children[0];
         model.position.z = 0;
-        model.position.x = 50;
+        model.position.x = 100;
         model.position.y = 100;
 
         //model.scale *= 1;
