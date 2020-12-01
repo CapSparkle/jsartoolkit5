@@ -97,10 +97,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
         //model.scale *= 1;
 
-        var animation = gltf.animations[0];
-        var mixer = new THREE.AnimationMixer(model);
-        mixers.push(mixer);
-        var action = mixer.clipAction(animation);
+        //var animation = gltf.animations[0];
+        //var mixer = new THREE.AnimationMixer(model);
+        //mixers.push(mixer);
+        //var action = mixer.clipAction(animation);
         action.play();
 
         root.matrixAutoUpdate = false;
@@ -224,13 +224,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     var tick = function() {
         draw();
-        requestAnimationFrame(tick);
-
+        //requestAnimationFrame(tick);
+        /*
         if (mixers.length > 0) {
             for (var i = 0; i < mixers.length; i++) {
                 mixers[i].update(clock.getDelta());
             }
-        }
+        }*/
     };
 
     var draw = function() {
