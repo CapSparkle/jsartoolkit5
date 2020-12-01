@@ -26,10 +26,10 @@ var trackedMatrix = {
 
 var markers = {
     pinball: {
-        width: 1920,
-        height: 1200,
-        dpi: 96,
-        url: "../examples/DataNFT/chrismass_three_toys"
+        width: 4000,
+        height: 2900,
+        dpi: 300,
+        url: "../examples/DataNFT/toys_high_res"
     }
 };
 
