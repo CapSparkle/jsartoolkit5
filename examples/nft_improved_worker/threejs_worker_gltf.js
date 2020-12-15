@@ -61,10 +61,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     // var context_draw = canvas_draw.getContext('2d');
     var renderer = new THREE.WebGLRenderer({
         canvas: canvas_draw,
-        alpha: true,
-        antialias: true
+        //alpha: true,
+        //antialias: true
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    //renderer.setPixelRatio(window.devicePixelRatio);
 
     var scene = new THREE.Scene();
 
