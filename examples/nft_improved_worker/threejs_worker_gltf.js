@@ -64,7 +64,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         alpha: true,
         //antialias: true
     });
-    //renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(window.devicePixelRatio);
 
     var scene = new THREE.Scene();
 
