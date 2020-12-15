@@ -91,9 +91,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     threeGLTFLoader.load("../Data/models/scene.glb", function(gltf) {
         model = gltf.scene.children[0];
-        model.position.z = 0;
-        model.position.x = 100;
-        model.position.y = 100;
+        model.position.z = 10;
+        model.position.x = 160;
+        model.position.y = 30;
 
         model.rotation = [0, 70, 0, 1]
         model.scale *= 10;
