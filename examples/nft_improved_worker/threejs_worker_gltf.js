@@ -95,7 +95,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         model.position.x = 160;
         model.position.y = 30;
 
-        model.rotation = [0, 70, 0, 1]
+        model.scale.z *= 10;
+        model.scale.x *= 10;
+        model.scale.y *= 10;
+
+        //model.rotation = [0, 70, 0, 1]
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
@@ -107,9 +111,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.add(model);
     });
 
-    model.scale.z *= 10;
-    model.scale.x *= 10;
-    model.scale.y *= 10;
+
 
 
     var load = function() {
