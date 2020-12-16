@@ -170,7 +170,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
                         proj[5] *= ratioH;
                         proj[9] *= ratioH;
                         proj[13] *= ratioH;
-                        setMatrix(camera.projectionMatrix, proj);
+                        //setMatrix(camera.projectionMatrix, proj);
                         break;
                     }
 
