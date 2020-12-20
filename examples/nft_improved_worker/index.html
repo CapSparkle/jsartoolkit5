@@ -8,7 +8,74 @@
     <link rel="stylesheet" href="../css/video-style.css" />
 </head>
 
+
 <body>
+
+    <!-- Photo essentials -->
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="ua-parser.min.js"></script>
+    <script src="FileSaver.js"></script>
+
+    <script>
+        function hasGetUserMedia() {
+            return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+        }
+        if (hasGetUserMedia()) {
+            // Good to go!
+        } else {
+            alert("getUserMedia() is not supported by your browser");
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        function alertF() {
+            alert(1);
+        }
+
+        function TakeScreenshot() {
+            alertF();
+            let div = document.getElementById('ARwindow');
+            html2canvas(div).then(
+                function(canvas) {
+                    canvas.toBlob(SaveScreenshoot(blob));
+                })
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        var counter = 0;
+
+        function SaveScreenshoot(blob) {
+            var parser = new UAParser();
+            var OS = parser.getOS().name;
+            var browser = parser.getBrowser().name;
+            OS = OS.toLowerCase();
+            browser = browser.toLowerCase();
+            console.log(OS);
+            alert(OS + "|" + browser);
+            if (browser == "chrome") {
+                chrome.desktopCapture.chooseDesktopMedia(['screen'], )
+            }
+        }
+    </script>
+
+    <button onclick="TakeScreenshot()" style="outline: none;">
+    <img src="t2.png" style="
+    position: absolute;
+    z-index: 2;
+    width: 5pc;
+    height: 4pc;
+    left: 50%;
+    top: 100%;
+    margin-left: -2.5pc;
+    margin-top: -7.5pc;">
+    </button>
+
+    <!-- End button essentials -->
+
     <div id="loading">
         <img src="../Data/logo.gif" />
         <span class="loading-text">Loading, please wait</span>
