@@ -32,17 +32,11 @@
 
 
     <script type="text/javascript">
-        function alertF() {
-            alert(1);
-        }
-
         function TakeScreenshot() {
-            alertF();
             let canvas = document.getElementById("canvas");
             html2canvas(canvas).then(
                 function(canvas) {
-                    console.log(typeof canvas);
-                    canvas.toBlob(SaveScreenshoot());
+                    canvas.toBlob(SaveScreenshoot(blob));
                 })
         }
     </script>
@@ -62,11 +56,6 @@
 
             counter += 1;
             saveAs(blob, "Photo_with_snowman_" + counter.toString());
-
-
-            if (browser == "chrome") {
-                chrome.desktopCapture.chooseDesktopMedia(['screen'], )
-            }
         }
     </script>
 
