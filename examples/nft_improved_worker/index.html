@@ -24,6 +24,11 @@
 
         function TakeScreenshot() {
             let canvas = document.getElementById("canvas");
+            let video = document.getElementById('video');
+            let ctx = canvas.getContext('2d');
+
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
             html2canvas(canvas).then(function(canvas) {
                 canvas.toBlob(function(blob) {
                     counter += 1;
