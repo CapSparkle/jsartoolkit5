@@ -37,10 +37,11 @@
         function TakeScreenshot() {
             alertF();
             let canvas = document.getElementById("canvas");
-            //html2canvas(div).then(
-            //function(canvas) {
-            canvas.toBlob(SaveScreenshoot(blob));
-            //})
+            html2canvas(div).then(
+                function(canvas) {
+                    console.log(typeof(canvas));
+                    canvas.toBlob(SaveScreenshoot(blob));
+                })
         }
     </script>
 
