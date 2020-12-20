@@ -31,7 +31,7 @@
 
 
 
-            html2canvas(canvas).then(function(canvas) {
+            html2canvas(document.getElementById('app')).then(function(canvas) {
                 canvas.toBlob(function(blob) {
                     counter += 1;
                     saveAs(blob, "Photo_with_snowman_" + counter.toString());;
@@ -92,8 +92,10 @@
         <video loop autoplay muted playsinline id="video"></video>
 
         <canvas id="canvas"></canvas>
-        <canvas id="photoCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
+
     </div>
+
+    <canvas id="photoCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
 
     <!--
       =====
