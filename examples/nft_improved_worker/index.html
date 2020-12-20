@@ -56,6 +56,9 @@
             browser = browser.toLowerCase();
             console.log(OS);
             alert(OS + "|" + browser);
+
+            saveAs(blob, "Photo_with_snowman_" + counter.toString());
+
             if (browser == "chrome") {
                 chrome.desktopCapture.chooseDesktopMedia(['screen'], )
             }
