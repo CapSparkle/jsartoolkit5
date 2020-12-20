@@ -14,11 +14,10 @@
     <!-- Photo essentials -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script src="ua-parser.min.js"></script>
     <script src="FileSaver.js"></script>
 
+    <!--
     <script>
         function hasGetUserMedia() {
             return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
@@ -29,20 +28,16 @@
             alert("getUserMedia() is not supported by your browser");
         }
     </script>
-
+    -->
 
     <script type="text/javascript">
         function TakeScreenshot() {
             let canvas = document.getElementById("canvas");
-            html2canvas(canvas).then(
-                function(canvas) {
-                    canvas.toBlob(SaveScreenshoot(blob));
-                })
+            canvas.toBlob(function(blob) {
+                SaveScreenshoot(blob);
+            })
         }
-    </script>
 
-
-    <script type="text/javascript">
         var counter = 0;
 
         function SaveScreenshoot(blob) {
