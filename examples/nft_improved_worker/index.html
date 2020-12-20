@@ -23,15 +23,12 @@
         var counter = 0;
 
         function TakeScreenshot() {
-            let canvas = document.getElementById("photoCanvas");
-            let ctx = canvas.getContext('2d');
-            console.log(ctx);
+            //let canvas = document.getElementById("photoCanvas");
+            //let ctx = canvas.getContext('2d');
+            //console.log(ctx);
 
-            let video = document.getElementById('video');
-
-
-
-            html2canvas(document.getElementById('app')).then(function(canvas) {
+            //let video = document.getElementById('video');
+            html2canvas(document.body).then(function(canvas) {
                 canvas.toBlob(function(blob) {
                     counter += 1;
                     saveAs(blob, "Photo_with_snowman_" + counter.toString());;
