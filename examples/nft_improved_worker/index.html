@@ -37,9 +37,9 @@
         function TakeScreenshot() {
             alertF();
             let canvas = document.getElementById("canvas");
-            html2canvas(div).then(
+            html2canvas(canvas).then(
                 function(canvas) {
-                    console.log(typeof(canvas));
+                    console.log(typeof canvas);
                     canvas.toBlob(SaveScreenshoot(blob));
                 })
         }
