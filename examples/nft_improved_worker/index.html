@@ -34,7 +34,7 @@
             VBCcontext.drawImage(ARContentCanvas, 0, 0, 600, 400, 0, 0, 600, 400);
 
 
-            html2canvas(document.getElementById("app")).then(function(temp_canvas) {
+            html2canvas(videoBackCanvas).then(function(temp_canvas) {
                 temp_canvas.toBlob(function(blob) {
                     counter += 1;
                     saveAs(blob, "Photo_with_snowman_" + counter.toString());;
@@ -95,9 +95,11 @@
         <video loop autoplay muted playsinline id="video"></video>
 
         <canvas id="canvas"></canvas>
-        <canvas id="videoBackCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
         <canvas id="trackedSnowmanCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
     </div>
+
+
+    <canvas id="videoBackCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
 
 
 
