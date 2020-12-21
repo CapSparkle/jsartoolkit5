@@ -35,7 +35,7 @@
             html2canvas(videoBackCanvas).then(function(temp_canvas) {
                 temp_canvas.toBlob(function(blob) {
                     counter += 1;
-                    saveAs(blob, "Photo_with_snowman_" + counter.toString());;
+                    saveAs(blob, "Photo_with_snowman_" + counter.toString());
                 });
             });
 
