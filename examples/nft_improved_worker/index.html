@@ -27,13 +27,11 @@
             let videoBackCanvas = document.getElementById("videoBackCanvas");
 
             let ARContentCanvas = document.getElementById('canvas');
-            let trackedSnowmanCanvas = document.getElementById("trackedSnowmanCanvas");
+            //let trackedSnowmanCanvas = document.getElementById("trackedSnowmanCanvas");
 
             let VBCcontext = videoBackCanvas.getContext('2d');
             VBCcontext.drawImage(video, 0, 0, 600, 400, 0, 0, 600, 400);
-
-            let TSCcontext = trackedSnowmanCanvas.getContext('2d');
-            TSCcontext.drawImage(ARContentCanvas, 0, 0, 600, 400, 0, 0, 600, 400);
+            VBCcontext.drawImage(ARContentCanvas, 0, 0, 600, 400, 0, 0, 600, 400);
 
 
             html2canvas(document.getElementById("app")).then(function(temp_canvas) {
