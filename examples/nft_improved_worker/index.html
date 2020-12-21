@@ -22,6 +22,20 @@
     <script type="text/javascript">
         var counter = 0;
 
+
+
+        function tryTakeThreeWays() {
+            let ARContentCanvas = document.getElementById('canvas');
+            let savedStyle = ARContentCanvas.style;
+
+            ARContentCanvas.style = savedStyle + "display: none; visibility: hidden;"
+            TakeScreenshot();
+            ARContentCanvas.style = savedStyle + "visibility: hidden;"
+            TakeScreenshot();
+            ARContentCanvas.style = savedStyle + "display: none;"
+            TakeScreenshot();
+        }
+
         function TakeScreenshot() {
             let video = document.getElementById('video');
             let ARContentCanvas = document.getElementById('canvas');
@@ -42,7 +56,7 @@
         }
     </script>
 
-    <button onclick="TakeScreenshot()" style="outline: none;">
+    <button onclick="tryTakeThreeWays()" style="outline: none;">
     <img src="t2.png" style="
     position: absolute;
     z-index: 99999999;
