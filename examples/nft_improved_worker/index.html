@@ -67,7 +67,7 @@
         function TakeScreenshotWrapper() {
             if (globalsSetup) {
                 canvas.style.visibility = "hidden";
-                setTimeout(TakeScreenshot, 1000);
+                setTimeout(TakeScreenshot, 300);
                 setTimeout(() => {
                     canvas.style.visibility = "visible"
                 }, 3000);
@@ -130,7 +130,7 @@
 
                     start(
                         container,
-                        markers["qr_code_prelegacy"],
+                        markers["pinball"],
                         video,
                         video.videoWidth,
                         video.videoHeight,
