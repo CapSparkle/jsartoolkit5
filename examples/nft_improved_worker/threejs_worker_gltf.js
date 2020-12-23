@@ -114,9 +114,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         model.position.x = 0;
         model.position.y = 0;
 
-        model.scale.z = 1;
-        model.scale.x = 1;
-        model.scale.y = 1;
+        model.scale.z = 20;
+        model.scale.x = 20;
+        model.scale.y = 20;
 
         model.scale.z *= 5;
         model.scale.x *= 5;
