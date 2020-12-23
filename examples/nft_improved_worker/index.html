@@ -66,8 +66,10 @@
 
         function TakeScreenshotWrapper() {
             if (globalsSetup) {
+                photoCanvas.width = video.width;
+                photoCanvas.height = video.height;
                 canvas.style.visibility = "hidden";
-                setTimeout(TakeScreenshot, 300);
+                setTimeout(TakeScreenshot, 400);
                 setTimeout(() => {
                     canvas.style.visibility = "visible"
                 }, 3000);
