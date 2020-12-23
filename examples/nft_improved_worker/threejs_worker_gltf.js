@@ -43,6 +43,12 @@ var markers = {
         dpi: 1,
         url: "../examples/DataNFT/qr-code_prelegacy"
     },
+    pinball: {
+        width: 1637,
+        height: 2048,
+        dpi: 220,
+        url: "../examples/DataNFT/pinball"
+    },
 };
 
 var setMatrix = function(matrix, value) {
