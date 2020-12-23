@@ -104,6 +104,7 @@ var saveAs = _global.saveAs || (
             }
         } else {
             // Support blobs
+            console.log(blob);
             a.href = URL.createObjectURL(blob)
             setTimeout(function() { URL.revokeObjectURL(a.href) }, 4E4) // 40s
             setTimeout(function() { click(a) }, 0)

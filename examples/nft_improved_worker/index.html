@@ -3,98 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>NFT_test</title>
+    <title>С новым годом, томичи!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/video-style.css" />
 </head>
 
-
 <body>
-
-    <!-- Photo essentials -->
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-    <script src="ua-parser.min.js"></script>
-    <script src="FileSaver.js"></script>
-
-    <script type="text/javascript">
-        var counter = 0;
-
-
-
-        function tryTakeThreeWays() {
-            let ARContentCanvas = document.getElementById('canvas');
-            let savedStyle = ARContentCanvas.style;
-
-            ARContentCanvas.style = savedStyle + "display: none; visibility: hidden;"
-            TakeScreenshot();
-            ARContentCanvas.style = savedStyle + "visibility: hidden;"
-            TakeScreenshot();
-            ARContentCanvas.style = savedStyle + "display: none;"
-            TakeScreenshot();
-        }
-
-        function TakeScreenshot() {
-            let video = document.getElementById('video');
-            let ARContentCanvas = document.getElementById('canvas');
-
-            let videoBackCanvas = document.getElementById("videoBackCanvas");
-
-            let VBCcontext = videoBackCanvas.getContext('2d');
-            VBCcontext.drawImage(video, 0, 0, 600, 400, 0, 0, 600, 400);
-            VBCcontext.drawImage(ARContentCanvas, 0, 0, 600, 400, 0, 0, 600, 400);
-
-            html2canvas(videoBackCanvas).then(function(temp_canvas) {
-                temp_canvas.toBlob(function(blob) {
-                    counter += 1;
-                    saveAs(blob, "Photo_with_snowman_" + counter.toString());
-                });
-            });
-
-        }
-    </script>
-
-    <button onclick="tryTakeThreeWays()" style="outline: none;">
-    <img src="t2.png" style="
-    position: absolute;
-    z-index: 99999999;
-    width: 5pc;
-    height: 4pc;
-    left: 50%;
-    top: 100%;
-    margin-left: -2.5pc;
-    margin-top: -7.5pc;">
-    </button>
-
-    <!-- End Photo essentials -->
-
-
-
     <div id="loading">
         <img src="../Data/logo.gif" />
-        <span class="loading-text">Loading, please wait</span>
-    </div>
-
-    <!--
-  ==================
-  STATS
-  ==================
-  -->
-
-    <div id="stats" class="ui stats">
-        <div id="stats1" class="stats-item">
-            <p class="stats-item-title">
-                Main
-            </p>
-        </div>
-
-        <div id="stats2" class="stats-item">
-            <p class="stats-item-title">
-                Worker
-            </p>
-        </div>
+        <span class="loading-text">Загрузка, пожалуйста подождите...</span>
     </div>
 
     <!--
@@ -104,48 +21,75 @@
       -->
 
     <div id="app">
-        <video loop autoplay muted playsinline id="video" style="z-index: 1;"></video>
-        <canvas id="canvas" style="z-index: 2; display: none; visibility: hidden;"></canvas>
+        <video loop autoplay muted playsinline id="video"></video>
+        <canvas id="canvas" style="visibility: visible;"></canvas>
     </div>
+    <canvas id="photoCanvas" width="640" height="400" style="width: 640px; height: 480px;"></canvas>
 
 
-    <canvas id="videoBackCanvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="ua-parser.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="canvas-toBlob.js"></script>
+
+    <script type="text/javascript">
+        var canvas;
+        var photoCanvas;
+        var video;
+        var PCContext;
+        var counter = 0;
+
+        var globalsSetup = false;
+        setTimeout(setGlobals, 1200);
+
+        function setGlobals() {
+            canvas = document.getElementById("canvas");
+            video = document.getElementById('video');
+
+            photoCanvas = document.getElementById("photoCanvas");
+            PCContext = photoCanvas.getContext('2d');
+            globalsSetup = true;
+        }
 
 
+        function TakeScreenshot() {
+            PCContext.drawImage(video, 0, 0);
+            PCContext.drawImage(canvas, 0, 0);
 
-    <!--
-      =====
-      Hint about image
-      =====
+            photoCanvas.toBlob(function(blob) {
+                counter += 1;
+                saveAs(blob, "Photo_with_snowman_" + counter.toString());
+            });
+            canvas.style.visibility = "visible";
+        }
 
-      <a
-      href="https://raw.githubusercontent.com/artoolkit/artoolkit5/master/doc/Marker%20images/pinball.jpg"
-      class="ui marker"
-      target="_blank"
-    >
-      🖼 Marker Image 
-    </a>
-    -->
 
+        function TakeScreenshotWrapper() {
+            if (globalsSetup) {
+                canvas.style.visibility = "hidden";
+                setTimeout(TakeScreenshot, 500);
+            }
+        }
+    </script>
+
+    <button onclick="TakeScreenshotWrapper()" style="outline: none;">
+  <img src="t2.png" style="
+  position: absolute;
+  z-index: 99999999;
+  width: 5pc;
+  height: 4pc;
+  left: 50%;
+  top: 100%;
+  margin-left: -2.5pc;
+  margin-top: -7.5pc;">
+  </button>
 
     <script src="../js/third_party/three.js/stats.min.js"></script>
     <script src="../js/third_party/three.js/three.min.js"></script>
     <script src="../js/third_party/three.js/GLTFLoader.js"></script>
-
     <script src="threejs_worker_gltf.js"></script>
 
     <script>
-        /**
-         * STATS
-         */
-        var statsMain = new Stats();
-        statsMain.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-        document.getElementById("stats1").appendChild(statsMain.dom);
-
-        var statsWorker = new Stats();
-        statsWorker.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-        document.getElementById("stats2").appendChild(statsWorker.dom);
-
         /**
          * APP / ELEMENTS
          */
@@ -183,17 +127,13 @@
 
                     start(
                         container,
-                        markers["pinball"],
+                        markers["qr_code_prelegacy"],
                         video,
                         video.videoWidth,
                         video.videoHeight,
                         canvas,
-                        function() {
-                            statsMain.update();
-                        },
-                        function() {
-                            statsWorker.update();
-                        },
+                        null,
+                        null,
                         null
                     );
                 });

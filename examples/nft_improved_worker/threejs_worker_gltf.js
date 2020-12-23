@@ -25,12 +25,24 @@ var trackedMatrix = {
 }
 
 var markers = {
-    pinball: {
-        width: 1920,
-        height: 1200,
-        dpi: 96,
-        url: "../examples/DataNFT/chrismass_three_toys"
-    }
+    qr_code_legacy: {
+        width: 1238,
+        height: 1238,
+        dpi: 300,
+        url: "../examples/DataNFT/qr-code_legacy"
+    },
+    qr_code_stable: {
+        width: 938,
+        height: 938,
+        dpi: 300,
+        url: "../examples/DataNFT/qr-code_stable"
+    },
+    qr_code_prelegacy: {
+        width: 370,
+        height: 370,
+        dpi: 300,
+        url: "../examples/DataNFT/qr-code_prelegacy"
+    },
 };
 
 var setMatrix = function(matrix, value) {
@@ -70,7 +82,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     //var camera = new THREE.Camera();
     //camera.matrixAutoUpdate = false;
-    var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000000);
+    var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 400;
 
     scene.add(camera);
@@ -89,17 +101,21 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
 
-    threeGLTFLoader.load("../Data/models/scene.glb", function(gltf) {
+    threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
-        model.position.z = -20;
-        model.position.x = 160;
-        model.position.y = 30;
 
-        model.scale.z *= 10;
-        model.scale.x *= 10;
-        model.scale.y *= 10;
+        model.position.z = 0;
+        model.position.x = 50;
+        model.position.y = -3000;
 
-        //model.rotation = [0, 70, 0, 1]
+        model.scale.z = 200;
+        model.scale.x = 200;
+        model.scale.y = 200;
+
+        model.scale.z *= 30;
+        model.scale.x *= 30;
+        model.scale.y *= 30;
+
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
@@ -111,8 +127,18 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.add(model);
     });
 
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
 
+    const sound = new THREE.Audio(listener);
 
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load('../Data/sound/audio_snowman.ogg', function(buffer) {
+        sound.setBuffer(buffer);
+        sound.setLoop(false);
+        sound.setVolume(0.5);
+
+    });
 
     var load = function() {
         vw = input_width;
@@ -180,7 +206,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
                             // removing loader page if present
                             var loader = document.getElementById('loading');
                             if (loader) {
-                                loader.querySelector('.loading-text').innerText = 'Start the tracking!';
+                                loader.querySelector('.loading-text').innerText = 'Начинаем!';
                                 setTimeout(function() {
                                     loader.parentElement.removeChild(loader);
                                 }, 2000);
@@ -200,7 +226,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
                         break;
                     }
             }
-            track_update();
+            //track_update();
             process();
         };
     };
@@ -240,8 +266,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         }
     };
 
+    var flagAudio = true;
+
     var draw = function() {
-        render_update();
+        //render_update();
         var now = Date.now();
         var dt = now - lasttime;
         time += dt;
@@ -251,6 +279,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             root.visible = false;
         } else {
             root.visible = true;
+            if (flagAudio) {
+                sound.play();
+                flagAudio = false;
+            }
 
             // interpolate matrix
             for (var i = 0; i < 16; i++) {
