@@ -152,6 +152,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     });
 
+    window.scene = scene;
+
     var load = function() {
         vw = input_width;
         vh = input_height;
