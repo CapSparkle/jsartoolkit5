@@ -104,10 +104,6 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     var root = new THREE.Object3D();
     scene.add(root);
 
-    root.scale.z = 30;
-    root.scale.x = 30;
-    root.scale.y = 30;
-
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
 
@@ -118,16 +114,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         model.position.x = 0;
         model.position.y = 0;
 
-        model.scale.z = 1;
-        model.scale.x = 1;
-        model.scale.y = 1;
+        //model.scale.z = 1;
+        //model.scale.x = 1;
+        //model.scale.y = 1;
 
-        model.scale.z *= 1;
-        model.scale.x *= 1;
-        model.scale.y *= 1;
-
-
-
+        //model.scale.z *= 1;
+        //model.scale.x *= 1;
+        //model.scale.y *= 1;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
