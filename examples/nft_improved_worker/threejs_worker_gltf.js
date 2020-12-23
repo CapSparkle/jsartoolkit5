@@ -40,7 +40,7 @@ var markers = {
     qr_code_prelegacy: {
         width: 370,
         height: 370,
-        dpi: 300,
+        dpi: 1,
         url: "../examples/DataNFT/qr-code_prelegacy"
     },
 };
