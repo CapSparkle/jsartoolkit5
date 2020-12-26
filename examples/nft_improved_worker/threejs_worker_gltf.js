@@ -102,6 +102,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     );
 
     var root = new THREE.Object3D();
+    root.add(sphere);
+    sphere.position.set(0, 0, 0);
+
+
     scene.add(root);
 
     /* Load Model */
@@ -125,7 +129,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         action.play();
 
         root.matrixAutoUpdate = false;
-        //root.add(model);
+        root.add(model);
     });
 
     const listener = new THREE.AudioListener();
