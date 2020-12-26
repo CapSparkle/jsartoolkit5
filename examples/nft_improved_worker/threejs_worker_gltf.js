@@ -105,7 +105,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     //sphere.position.z = 0;
     //sphere.position.x = 100;
     //sphere.position.y = 100;
-    sphere.scale.set(10, 10, 10);
+    sphere.scale.set(100, 100, 100);
 
     var root = new THREE.Object3D();
     root.add(sphere);
@@ -136,7 +136,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         action.play();
 
         root.matrixAutoUpdate = false;
-        root.add(model);
+        //root.add(model);
     });
 
     const listener = new THREE.AudioListener();
