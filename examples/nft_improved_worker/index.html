@@ -59,6 +59,7 @@
             photoCanvas.toBlob(function(blob) {
                 counter += 1;
                 saveAs(blob, "Photo_with_snowman_" + counter.toString());
+                canvas.style.visibility = "visible";
             });
 
         }
@@ -70,9 +71,9 @@
                 photoCanvas.height = canvas.height;
                 canvas.style.visibility = "hidden";
                 setTimeout(TakeScreenshot, 400);
-                setTimeout(() => {
-                    canvas.style.visibility = "visible"
-                }, 3000);
+                /*setTimeout(() => {
+                    
+                }, 3000); */
             }
         }
     </script>
