@@ -125,7 +125,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         action.play();
 
         root.matrixAutoUpdate = false;
-        root.add(model);
+        //root.add(model);
     });
 
     const listener = new THREE.AudioListener();
