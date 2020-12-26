@@ -101,9 +101,16 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         new THREE.MeshNormalMaterial()
     );
 
+    sphere.material.flatShading;
+    //sphere.position.z = 0;
+    //sphere.position.x = 100;
+    //sphere.position.y = 100;
+    sphere.scale.set(10, 10, 10);
+
     var root = new THREE.Object3D();
     root.add(sphere);
     sphere.position.set(0, 0, 0);
+
 
 
     scene.add(root);
