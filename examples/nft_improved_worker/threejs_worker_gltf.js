@@ -121,13 +121,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
 
-        model.position.z = 0;
+        model.position.z = 100;
         model.position.x = 200;
-        model.position.y = -1100;
+        model.position.y = -1600;
 
-        model.scale.z = 3000;
-        model.scale.x = 3000;
-        model.scale.y = 3000;
+        model.scale.z = 3900;
+        model.scale.x = 3900;
+        model.scale.y = 3900;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
@@ -324,7 +324,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
-            model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+            //model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
         }
 
         renderer.render(scene, camera);
