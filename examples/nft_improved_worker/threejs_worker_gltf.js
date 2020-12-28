@@ -296,7 +296,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     var rootQuaternion = new THREE.Quaternion();
     var modelPoseCopy = new THREE.Vector3();
-    var modelMatrix = new THREE.matrix4();
+    var modelMatrix = new THREE.Matrix4();
     modelMatrix.makeScale(modelScale.x, modelScale.y, modelScale.z);
 
     var draw = function() {
