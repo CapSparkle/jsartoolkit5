@@ -111,9 +111,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     root.add(sphere);
     sphere.position.set(0, 0, 0);
 
-
-
     scene.add(root);
+
+    var positionOffset
 
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
@@ -135,8 +135,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         var action = mixer.clipAction(animation);
         action.play();
 
+
+        var positionOffset = new THREE.Vector3(0, 0, 0);
+        positionOffset.subVectors(model.position, root.position);
+
+
         root.matrixAutoUpdate = false;
-        //root.add(model);
+        root.add(model);
     });
 
     const listener = new THREE.AudioListener();
@@ -308,6 +313,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
+            //var rootQuaternion = root.quaternion;
+            positionOffset.applyQuaternion(root.quaternion)
+            model.position.set(positionOffset.x, positionOffset.y, positionOffset.z);
         }
 
         renderer.render(scene, camera);
