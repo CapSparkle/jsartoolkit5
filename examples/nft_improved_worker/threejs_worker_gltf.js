@@ -115,13 +115,19 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
-    var modelPose = new THREE.Vector3(0, -100, 100);
-    var modelScale = new THREE.Vector3(3000, 3000, 3000);
+    var modelPose = new THREE.Vector3(0, 0, 0);
     var threeGLTFLoader = new THREE.GLTFLoader();
 
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
-        model.matrixAutoUpdate = false;
+
+        model.position.z = 0;
+        model.position.x = 200;
+        model.position.y = -1100;
+
+        model.scale.z = 3000;
+        model.scale.x = 3000;
+        model.scale.y = 3000;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
@@ -133,17 +139,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.matrixAutoUpdate = false;
         root.add(model);
 
-        //model.position.z = 0;
-        //model.position.x = 200;
-        //model.position.y = -1100;
-
-        model.scale.z = modelScale.x;
-        model.scale.x = modelScale.y;
-        model.scale.y = modelScale.z;
-        //let a = new THREE.Vector3(0, 0, 0);
-        //let b = new THREE.Vector3(0, 0, 0);
-
-        //positionOffset.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
+        modelPose.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
     });
 
     const listener = new THREE.AudioListener();
@@ -319,7 +315,6 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
                     trackedMatrix.delta[i] / interpolationFactor;
             }
 
-
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
 
@@ -328,7 +323,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
-            model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+            //model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
         }
 
         renderer.render(scene, camera);
