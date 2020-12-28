@@ -115,8 +115,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
-    //var modelPose = new THREE.Vector3(200, -1100, 0);
-    //var modelScale = new THREE.Vector3(3000, 3000, 3000);
+    var modelPose = new THREE.Vector3(200, -1100, 0);
+    var modelScale = new THREE.Vector3(3000, 3000, 3000);
     var threeGLTFLoader = new THREE.GLTFLoader();
 
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
