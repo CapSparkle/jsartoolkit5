@@ -289,6 +289,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
 
     var rootQuaternion = new THREE.Quaternion();
+    var positionOffsetCopy = new THREE.Vector3();
 
     var draw = function() {
         //render_update();
@@ -318,9 +319,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             setMatrix(root.matrix, trackedMatrix.interpolated);
             rootQuaternion.setFromRotationMatrix(root.matrix);
 
-            let posOffestCopy = positionOffset;
-            posOffestCopy.applyQuaternion(rootQuaternion);
-            model.position.set(posOffestCopy.x, posOffestCopy.y, posOffestCopy.z);
+            positionOffsetCopy.copy(positionOffset);
+            positionOffsetCopy.applyQuaternion(rootQuaternion);
+
+            model.position.set(positionOffsetCopy.x, positionOffsetCopy.y, positionOffsetCopy.z);
+            console.log(root.position);
         }
 
         renderer.render(scene, camera);
