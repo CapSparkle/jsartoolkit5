@@ -115,7 +115,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
-    var modelPose = new THREE.Vector3(200, -1100, 0);
+    var modelPose = new THREE.Vector3(0, 0, 0);
     var modelScale = new THREE.Vector3(3000, 3000, 3000);
     var threeGLTFLoader = new THREE.GLTFLoader();
 
@@ -137,6 +137,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         //model.position.x = 200;
         //model.position.y = -1100;
 
+        model.scale.set(modelScale.x, modmodelScale.y, modelScale.z);
         //model.scale.z = 3000;
         //model.scale.x = 3000;
         //model.scale.y = 3000;
@@ -292,8 +293,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     var rootQuaternion = new THREE.Quaternion();
     var modelPoseCopy = new THREE.Vector3();
-    var modelMatrix = new THREE.Matrix4();
-    modelMatrix.makeScale(modelScale.x, modelScale.y, modelScale.z);
+    //var modelMatrix = new THREE.Matrix4();
+    //modelMatrix.makeScale(modelScale.x, modelScale.y, modelScale.z);
 
     var draw = function() {
         //render_update();
@@ -329,17 +330,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
-            modelMatrix.setPosition(modelPoseCopy);
 
-            setMatrix(model.matrix, modelMatrix);
-
-            model.position.setFromMatrixPosition(modelMatrix);
-            model.scale.setFromMatrixScale(modelMatrix);
-
-
-            let a = new THREE.Vector3();
-            console.log(root.position);
-            console.log(a.setFromMatrixPosition(modelMatrix));
+            model.position.set(modelPoseCopy);
         }
 
         renderer.render(scene, camera);
