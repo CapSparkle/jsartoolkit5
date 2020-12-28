@@ -287,6 +287,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     var flagAudio = true;
 
+
+    var rootQuaternion = new THREE.Quaternion();
+
     var draw = function() {
         //render_update();
         var now = Date.now();
@@ -313,14 +316,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
-
-            var rootQuaternion = new THREE.Quaternion();
             rootQuaternion.setFromRotationMatrix(root.matrix);
 
-            console.log(rootQuaternion);
-
-            positionOffset.applyQuaternion(rootQuaternion);
-            model.position.set(positionOffset.x, positionOffset.y, positionOffset.z);
+            let posOffestCopy = positionOffset;
+            posOffestCopy.applyQuaternion(rootQuaternion);
+            model.position.set(posOffestCopy.x, posOffestCopy.y, posOffestCopy.z);
         }
 
         renderer.render(scene, camera);
