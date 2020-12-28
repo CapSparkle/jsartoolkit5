@@ -114,6 +114,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     var positionOffset;
+    var offsetLength;
 
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
@@ -138,7 +139,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
         positionOffset = new THREE.Vector3(0, 0, 0);
         positionOffset.subVectors(model.position, root.position);
-
+        offsetLength = positionOffset.length();
 
         root.matrixAutoUpdate = false;
         root.add(model);
@@ -321,6 +322,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             positionOffsetCopy.copy(positionOffset);
             positionOffsetCopy.applyQuaternion(rootQuaternion);
+            positionOffsetCopy.setLength(offsetLength);
 
             model.position.set(positionOffsetCopy.x, positionOffsetCopy.y, positionOffsetCopy.z);
             console.log(root.position);
