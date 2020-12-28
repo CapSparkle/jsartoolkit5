@@ -24,6 +24,13 @@ var trackedMatrix = {
     ]
 }
 
+var modelMatrix = [
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+]
+
 var markers = {
     qr_code_legacy: {
         width: 1238,
@@ -113,8 +120,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     scene.add(root);
 
-    var positionOffset;
-    var offsetLength;
+    var positionOffset = new THREE.Vector3();
 
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
@@ -137,12 +143,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         action.play();
 
 
-        positionOffset = new THREE.Vector3(0, 0, 0);
-        positionOffset.subVectors(model.position, root.position);
-        offsetLength = positionOffset.length();
-
         root.matrixAutoUpdate = false;
         root.add(model);
+
+        let a = new THREE.Vector3(0, 0, 0);
+        let b = new THREE.Vector3(0, 0, 0);
+
+        positionOffset.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
     });
 
     const listener = new THREE.AudioListener();
@@ -322,10 +329,10 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             positionOffsetCopy.copy(positionOffset);
             positionOffsetCopy.applyQuaternion(rootQuaternion);
-            positionOffsetCopy.setLength(offsetLength);
 
             model.position.set(positionOffsetCopy.x, positionOffsetCopy.y, positionOffsetCopy.z);
             console.log(root.position);
+            console.log(model.position);
         }
 
         renderer.render(scene, camera);
