@@ -24,12 +24,6 @@ var trackedMatrix = {
     ]
 }
 
-var modelMatrix = [
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0
-]
 
 var markers = {
     qr_code_legacy: {
@@ -120,21 +114,14 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     scene.add(root);
 
-    var positionOffset = new THREE.Vector3();
+    var scaleAndPositionOffset = new THREE.matrix4();
 
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
 
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
-
-        model.position.z = 0;
-        model.position.x = 200;
-        model.position.y = -1100;
-
-        model.scale.z = 3000;
-        model.scale.x = 3000;
-        model.scale.y = 3000;
+        model.matrixAutoUpdate = false;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
@@ -146,10 +133,19 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.matrixAutoUpdate = false;
         root.add(model);
 
-        let a = new THREE.Vector3(0, 0, 0);
-        let b = new THREE.Vector3(0, 0, 0);
+        var modelPose = new Vector3(200, -1100, 0);
+        //model.position.z = 0;
+        //model.position.x = 200;
+        //model.position.y = -1100;
 
-        positionOffset.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
+        var modelScale = new Vector3(3000, 3000, 3000);
+        //model.scale.z = 3000;
+        //model.scale.x = 3000;
+        //model.scale.y = 3000;
+        //let a = new THREE.Vector3(0, 0, 0);
+        //let b = new THREE.Vector3(0, 0, 0);
+
+        //positionOffset.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
     });
 
     const listener = new THREE.AudioListener();
@@ -297,7 +293,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
 
     var rootQuaternion = new THREE.Quaternion();
-    var positionOffsetCopy = new THREE.Vector3();
+    var modelPoseCopy = new THREE.Vector3();
+    var modelMatrix = new THREE.matrix4();
+    modelMatrix.makeScale(modelScale.x, modelScale.y, modelScale.z);
 
     var draw = function() {
         //render_update();
@@ -327,10 +325,11 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             setMatrix(root.matrix, trackedMatrix.interpolated);
             rootQuaternion.setFromRotationMatrix(root.matrix);
 
-            positionOffsetCopy.copy(positionOffset);
-            positionOffsetCopy.applyQuaternion(rootQuaternion);
+            modelPoseCopy.copy(modelPose);
+            modelPoseCopy.applyQuaternion(rootQuaternion);
 
-            model.position.set(positionOffsetCopy.x, positionOffsetCopy.y, positionOffsetCopy.z);
+            modelMatrix.setPosition(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+
             console.log(root.position);
             console.log(model.position);
         }
