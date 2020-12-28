@@ -115,9 +115,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
-    var modelPose = new THREE.Vector3(200, -1100, 0);
-    var modelScale = new THREE.Vector3(3000, 3000, 3000);
-    var threeGLTFLoader = new THREE.GLTFLoader();
+    //var modelPose = new THREE.Vector3(200, -1100, 0);
+    //var modelScale = new THREE.Vector3(3000, 3000, 3000);
+    //var threeGLTFLoader = new THREE.GLTFLoader();
 
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
@@ -319,16 +319,23 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
                     trackedMatrix.delta[i] / interpolationFactor;
             }
 
+
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
+            root.position.setFromMatrixPosition(root.matrix);
+            //root.scale.setFromMatrixScale(root.matrix);
+
             rootQuaternion.setFromRotationMatrix(root.matrix);
 
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
-
-            modelMatrix.setPosition(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+            modelMatrix.setPosition(modelPoseCopy);
 
             setMatrix(model.matrix, modelMatrix);
+
+            model.position.setFromMatrixPosition(modelMatrix);
+            model.scale.setFromMatrixScale(modelMatrix);
+
 
             let a = new THREE.Vector3();
             console.log(root.position);
