@@ -50,6 +50,12 @@ var markers = {
         dpi: 220,
         url: "../examples/DataNFT/pinball"
     },
+    newYear_marker: {
+        width: 1637,
+        height: 2048,
+        dpi: 220,
+        url: "../examples/DataNFT/newYear_marker"
+    },
 };
 
 var setMatrix = function(matrix, value) {
