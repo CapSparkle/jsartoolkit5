@@ -114,8 +114,6 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     scene.add(root);
 
-    var scaleAndPositionOffset = new THREE.matrix4();
-
     /* Load Model */
     var modelPose;
     var modelScale;
