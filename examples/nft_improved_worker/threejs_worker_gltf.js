@@ -327,7 +327,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
             modelMatrix.setPosition(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
-            model.applyMatrix4(modelMatrix);
+            model.matrix.set(modelMatrix);
 
 
             console.log(root.position);
