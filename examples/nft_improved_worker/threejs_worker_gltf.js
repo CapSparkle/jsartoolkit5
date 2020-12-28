@@ -327,11 +327,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
             modelMatrix.setPosition(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+
+            setMatrix(root.matrix, trackedMatrix.interpolated);
             model.matrix.set(modelMatrix);
 
-
+            let a = new THREE.VEctor3();
             console.log(root.position);
-            console.log(model.position);
+            console.log(a.setFromMatrixPosition(modelMatrix));
         }
 
         renderer.render(scene, camera);
