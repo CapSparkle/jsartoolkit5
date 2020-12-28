@@ -106,7 +106,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     //sphere.position.z = 0;
     //sphere.position.x = 100;
     //sphere.position.y = 100;
-    sphere.scale.set(100, 100, 100);
+    sphere.scale.set(10, 10, 10);
 
     var root = new THREE.Object3D();
     root.add(sphere);
@@ -121,13 +121,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
         model = gltf.scene.children[0];
 
-        model.position.z = 100;
+        model.position.z = 40;
         model.position.x = 200;
-        model.position.y = -1600;
+        model.position.y = -1000;
 
-        model.scale.z = 3900;
-        model.scale.x = 3900;
-        model.scale.y = 3900;
+        model.scale.z = 2000;
+        model.scale.x = 2000;
+        model.scale.y = 2000;
 
         var animation = gltf.animations[0];
         var mixer = new THREE.AnimationMixer(model);
