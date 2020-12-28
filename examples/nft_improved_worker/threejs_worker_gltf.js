@@ -136,7 +136,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         action.play();
 
 
-        var positionOffset = new THREE.Vector3(0, 0, 0);
+        positionOffset = new THREE.Vector3(0, 0, 0);
         positionOffset.subVectors(model.position, root.position);
 
 
