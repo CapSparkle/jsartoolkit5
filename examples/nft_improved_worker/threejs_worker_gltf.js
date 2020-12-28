@@ -139,6 +139,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.matrixAutoUpdate = false;
         root.add(model);
 
+        let b = new THREE.Vector3(0, 0, 0);
         modelPose.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
     });
 
