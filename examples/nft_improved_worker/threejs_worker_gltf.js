@@ -117,6 +117,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     var scaleAndPositionOffset = new THREE.matrix4();
 
     /* Load Model */
+    var modelPose;
+    var modelScale;
     var threeGLTFLoader = new THREE.GLTFLoader();
 
     threeGLTFLoader.load("../Data/models/SnowMan.glb", function(gltf) {
@@ -133,12 +135,12 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         root.matrixAutoUpdate = false;
         root.add(model);
 
-        var modelPose = new Vector3(200, -1100, 0);
+        modelPose = new Vector3(200, -1100, 0);
         //model.position.z = 0;
         //model.position.x = 200;
         //model.position.y = -1100;
 
-        var modelScale = new Vector3(3000, 3000, 3000);
+        modelScale = new Vector3(3000, 3000, 3000);
         //model.scale.z = 3000;
         //model.scale.x = 3000;
         //model.scale.y = 3000;
