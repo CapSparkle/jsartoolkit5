@@ -115,7 +115,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
-    var modelPose = new THREE.Vector3(0, 0, 0);
+    var modelPose = new THREE.Vector3(0, -100, 100);
     var modelScale = new THREE.Vector3(3000, 3000, 3000);
     var threeGLTFLoader = new THREE.GLTFLoader();
 
@@ -137,10 +137,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
         //model.position.x = 200;
         //model.position.y = -1100;
 
-        model.scale.set(modelScale.x, modmodelScale.y, modelScale.z);
-        //model.scale.z = 3000;
-        //model.scale.x = 3000;
-        //model.scale.y = 3000;
+        model.scale.z = modelScale.x;
+        model.scale.x = modelScale.y;
+        model.scale.y = modelScale.z;
         //let a = new THREE.Vector3(0, 0, 0);
         //let b = new THREE.Vector3(0, 0, 0);
 
@@ -323,15 +322,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
-            root.position.setFromMatrixPosition(root.matrix);
-            //root.scale.setFromMatrixScale(root.matrix);
 
             rootQuaternion.setFromRotationMatrix(root.matrix);
 
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
-            model.position.set(modelPoseCopy);
+            model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
         }
 
         renderer.render(scene, camera);
