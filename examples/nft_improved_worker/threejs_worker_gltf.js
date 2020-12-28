@@ -328,8 +328,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             modelMatrix.setPosition(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
 
-            setMatrix(root.matrix, trackedMatrix.interpolated);
-            model.matrix.set(modelMatrix);
+            setMatrix(model.matrix, modelMatrix);
 
             let a = new THREE.Vector3();
             console.log(root.position);
