@@ -113,7 +113,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
     scene.add(root);
 
-    var positionOffset
+    var positionOffset;
 
     /* Load Model */
     var threeGLTFLoader = new THREE.GLTFLoader();
@@ -314,7 +314,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
             //var rootQuaternion = root.quaternion;
-            positionOffset.applyQuaternion(root.quaternion)
+            positionOffset.applyQuaternion(root.quaternion);
             model.position.set(positionOffset.x, positionOffset.y, positionOffset.z);
         }
 
