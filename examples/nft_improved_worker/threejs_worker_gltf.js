@@ -313,8 +313,13 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
             // set matrix of 'root' by detected 'world' matrix
             setMatrix(root.matrix, trackedMatrix.interpolated);
-            //var rootQuaternion = root.quaternion;
-            positionOffset.applyQuaternion(root.quaternion);
+
+            var rootQuaternion = new THREE.Quaternion();
+            rootQuaternion.setFromRotationMatrix(root.matrix);
+
+            console.log(rootQuaternion);
+
+            positionOffset.applyQuaternion(rootQuaternion);
             model.position.set(positionOffset.x, positionOffset.y, positionOffset.z);
         }
 
