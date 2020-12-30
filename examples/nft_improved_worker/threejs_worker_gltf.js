@@ -121,6 +121,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     scene.add(root);
 
     /* Load Model */
+    //var initialRotation = new THREE.Euler(0, 0, 0, 'XYZ');
     var modelPose = new THREE.Vector3(0, 0, 0);
     var threeGLTFLoader = new THREE.GLTFLoader();
 
@@ -147,6 +148,8 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
 
         let b = new THREE.Vector3(0, 0, 0);
         modelPose.subVectors(model.position, b.setFromMatrixPosition(root.matrix));
+
+        //initialRotation = root.rotation;
     });
 
     const listener = new THREE.AudioListener();
@@ -297,6 +300,7 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
     var modelPoseCopy = new THREE.Vector3();
     //var modelMatrix = new THREE.Matrix4();
     //modelMatrix.makeScale(modelScale.x, modelScale.y, modelScale.z);
+    //var rotationModifier = 1000;
 
     var draw = function() {
         //render_update();
@@ -330,7 +334,9 @@ function start(container, marker, video, input_width, input_height, canvas_draw,
             modelPoseCopy.copy(modelPose);
             modelPoseCopy.applyQuaternion(rootQuaternion);
 
-            model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
+            //let ZDelta = Math.abs(initialRotation.z - root.rotation.z) / 90;
+
+            //model.position.set(modelPoseCopy.x, modelPoseCopy.y, modelPoseCopy.z);
         }
 
         renderer.render(scene, camera);
